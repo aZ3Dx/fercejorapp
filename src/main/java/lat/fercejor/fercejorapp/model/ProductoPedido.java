@@ -31,6 +31,12 @@ public class ProductoPedido {
     @JoinColumn(name = "fkIdPedido", nullable = false, referencedColumnName = "idPedido", insertable = false, updatable = false)
     private Pedido pedido;
 
+    @Column(name = "precioProductoPedido", nullable = false)
+    @NotBlank(message = "El precio del producto no puede estar vacío")
+    @Digits(integer = 10, fraction = 2, message = "El precio del producto no puede tener más de 10 dígitos y 2 decimales")
+    @Positive(message = "El precio del producto no puede ser negativo")
+    private Double precioProductoPedido;
+
     @Column(name = "peso", nullable = false)
     @NotBlank(message = "El peso del producto no puede estar vacío")
     @Digits(integer = 10, fraction = 2, message = "El peso del producto no puede tener más de 10 dígitos y 2 decimales")

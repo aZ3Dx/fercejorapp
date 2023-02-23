@@ -72,10 +72,6 @@ public class Producto {
     @JoinColumn(name = "fkIdCategoria", nullable = false, referencedColumnName = "idCategoria")
     private Categoria categoria;
 
-    @OneToOne
-    @JoinColumn(name = "fkIdProveedor", referencedColumnName = "idProveedor")
-    private Proveedor proveedor;
-
     @OneToMany(mappedBy = "producto")
     private List<ProductoPedido> productosPedidos;
     

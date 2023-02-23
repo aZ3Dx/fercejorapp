@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -37,6 +38,10 @@ public class HojaRuta {
     
     @Column(name = "estadoHojaRuta", nullable = false)
     private Boolean estadoHojaRuta;
+
+    @ManyToOne
+    @JoinColumn(name = "fkIdEmpleadoConductor", nullable = false, referencedColumnName = "idEmpleado")
+    private Empleado empleado;
     
     @OneToOne
     @JoinColumn(name = "fkIdTransporte", nullable = false, referencedColumnName = "idTransporte")
