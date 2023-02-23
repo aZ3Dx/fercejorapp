@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lat.fercejor.fercejorapp.api.ProductoPedidoServiceAPI;
+import lat.fercejor.fercejorapp.model.Pedido;
+import lat.fercejor.fercejorapp.model.Producto;
 import lat.fercejor.fercejorapp.model.ProductoPedido;
 import lat.fercejor.fercejorapp.repository.ProductoPedidoRepository;
 
@@ -23,9 +25,9 @@ public class ProductoPedidoService implements ProductoPedidoServiceAPI {
     }
 
     @Override
-    public Optional<ProductoPedido> obtenerProductoPedidoPorId(Long id) {
-        Optional<ProductoPedido> productoPedido = productoPedidoRepository.findById(id);
-        return productoPedido;
+    public Optional<ProductoPedido> obtenerPorProductoYPedido(Producto producto, Pedido pedido) {
+        ProductoPedido productoPedido = productoPedidoRepository.findByProductoAndPedido(producto, pedido);
+        return Optional.ofNullable(productoPedido);
     }
 
     @Override
@@ -35,14 +37,8 @@ public class ProductoPedidoService implements ProductoPedidoServiceAPI {
     }
 
     @Override
-    public void eliminarProductoPedido(Long id) {
-        productoPedidoRepository.deleteById(id);
-    }
-
-    @Override
-    public ProductoPedido actualizarProductoPedido(ProductoPedido productoPedido) {
-        ProductoPedido productoPedidoActualizado = productoPedidoRepository.save(productoPedido);
-        return productoPedidoActualizado;
+    public void eliminarPorProductoYPedido(Producto producto, Pedido pedido) {
+        productoPedidoRepository.deleteByProductoAndPedido(producto, pedido);
     }
     
 }
