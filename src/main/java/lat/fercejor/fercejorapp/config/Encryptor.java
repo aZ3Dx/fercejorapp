@@ -12,6 +12,7 @@ public class Encryptor implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        // Mostrar en consola "adm1n2023" encriptado
         System.out.println(securityBeans.passwordEncoder().encode("adm1n2023"));
     }
     
