@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
@@ -40,8 +41,12 @@ public class ComprobantePago {
     private Pedido pedido;
 
     @OneToOne
-    @JoinColumn(name = "fkTipoComprobante", nullable = false, referencedColumnName = "idTipoComprobante")
+    @JoinColumn(name = "fkIdTipoComprobante", nullable = false, referencedColumnName = "idTipoComprobante")
     private TipoComprobante tipoComprobante;
+
+    @ManyToOne
+    @JoinColumn(name = "fkIdEmpleadoAdministrador", nullable = false, referencedColumnName = "idEmpleado")
+    private Empleado empleado;
 
     @Column(name = "nota", nullable = false, length = 200)
     @Size(max = 200, message = "La nota no puede tener más de 200 caracteres")

@@ -71,8 +71,5 @@ public class Proveedor {
     @Size(max = 15, message = "El número de RUC del proveedor no puede tener más de 15 caracteres")
     @NotBlank(message = "El número de RUC del proveedor no puede estar vacío")
     private String numeroRuc;
-
-    @OneToOne(mappedBy = "proveedor")
-    private Producto producto;
     
 }

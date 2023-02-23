@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -68,15 +69,19 @@ public class Cliente {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimientoCliente;
 
+    @Column(name = "credito", nullable = false)
+    @NotBlank(message = "El crédito del cliente no puede estar vacío")
+    @Positive(message = "El crédito del cliente debe ser un número positivo")
+    private Double credito;
+
     @OneToOne
     @JoinColumn(name = "fkIdCuentaCliente", nullable = false, referencedColumnName = "idCuenta")
     private Cuenta cuenta;
 
-    @OneToOne
-    @JoinColumn(name = "fkIdCredito", referencedColumnName = "idCredito")
-    private Credito credito;
-
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<HistoriaCredito> historiasCredito;
 
 }

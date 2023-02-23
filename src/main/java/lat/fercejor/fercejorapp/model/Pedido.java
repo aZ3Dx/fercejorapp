@@ -76,10 +76,6 @@ public class Pedido {
     private Boolean estadoPedido;
 
     @ManyToOne
-    @JoinColumn(name = "fkIdEmpleadoVendedor", nullable = false, referencedColumnName = "idEmpleado")
-    private Empleado empleado;
-
-    @ManyToOne
     @JoinColumn(name = "fkIdCliente", nullable = false, referencedColumnName = "idCliente")
     private Cliente cliente;
 
