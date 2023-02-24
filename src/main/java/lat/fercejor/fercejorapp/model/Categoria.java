@@ -39,7 +39,7 @@ public class Categoria {
 
     @Column(name = "estadoCategoria", nullable = false)
     @NotNull(message = "El estado de la categoría no puede estar vacío")
-    private Boolean estadoCategoria;
+    private boolean estadoCategoria;
 
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;

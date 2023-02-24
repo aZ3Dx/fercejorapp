@@ -17,6 +17,7 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -35,10 +36,10 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPedido")
-    private Long id;
+    private long id;
 
     @Column(name = "fechaPedido", nullable = false)
-    @NotBlank(message = "La fecha del pedido no puede estar vacía")
+    @NotNull(message = "La fecha del pedido no puede estar vacía")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PastOrPresent(message = "La fecha del pedido no puede ser una fecha futura")
     private LocalDate fechaPedido;
@@ -49,22 +50,22 @@ public class Pedido {
     private String descripcionPedido;
 
     @Column(name = "cantidadProductos", nullable = false)
-    @NotBlank(message = "La cantidad de productos no puede estar vacía")
+    @NotNull(message = "La cantidad de productos no puede estar vacía")
     @Positive(message = "La cantidad de productos debe ser un número positivo")
     @Min(value = 1, message = "La cantidad de productos debe ser mayor a 0")
     private Integer cantidadProductos;
 
     @Column(name = "pesoPedido", nullable = false)
-    @NotBlank(message = "El peso del pedido no puede estar vacío")
+    @NotNull(message = "El peso del pedido no puede estar vacío")
     @Positive(message = "El peso del pedido debe ser un número positivo")
     @Digits(integer = 10, fraction = 2, message = "El peso del pedido debe tener como máximo 10 dígitos y 2 decimales")
-    private Double pesoPedido;
+    private double pesoPedido;
 
     @Column(name = "precioPedido", nullable = false)
-    @NotBlank(message = "El precio del pedido no puede estar vacío")
+    @NotNull(message = "El precio del pedido no puede estar vacío")
     @Positive(message = "El precio del pedido debe ser un número positivo")
     @Digits(integer = 10, fraction = 2, message = "El precio del pedido debe tener como máximo 10 dígitos y 2 decimales")
-    private Double precioPedido;
+    private double precioPedido;
 
     @Column(name = "fechaEntrega")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -72,8 +73,8 @@ public class Pedido {
     private LocalDate fechaEntrega;
 
     @Column(name = "estadoPedido", nullable = false)
-    @NotBlank(message = "El estado del pedido no puede estar vacío")
-    private Boolean estadoPedido;
+    @NotNull(message = "El estado del pedido no puede estar vacío")
+    private boolean estadoPedido;
 
     @ManyToOne
     @JoinColumn(name = "fkIdCliente", nullable = false, referencedColumnName = "idCliente")

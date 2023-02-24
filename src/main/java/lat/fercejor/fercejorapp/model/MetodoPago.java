@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -30,8 +31,8 @@ public class MetodoPago {
     private String nombreMetodoPago;
 
     @Column(name = "estadoMetodoPago", nullable = false)
-    @NotBlank(message = "El estado del método de pago no puede estar vacío")
-    private Boolean estadoMetodoPago;
+    @NotNull(message = "El estado del método de pago no puede estar vacío")
+    private boolean estadoMetodoPago;
 
     @OneToOne(mappedBy = "metodoPago")
     private ComprobantePago comprobantePago;

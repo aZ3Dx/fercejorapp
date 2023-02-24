@@ -11,25 +11,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "clientes")
 public class Cliente {
 
     @Id
     @Column(name = "idCliente")
-    @NotBlank(message = "El id del cliente no puede estar vacío")
     private Long id;
 
     @Column(name = "nombreCliente", nullable = false, length = 50)
@@ -64,15 +66,15 @@ public class Cliente {
     private String direccionCliente;
 
     @Column(name = "fechaNacimientoCliente", nullable = false)
-    @NotBlank(message = "La fecha de nacimiento del cliente no puede estar vacía")
+    @NotNull(message = "La fecha de nacimiento del cliente no puede estar vacía")
     @Past(message = "La fecha de nacimiento del cliente no puede ser mayor a la fecha actual")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimientoCliente;
 
     @Column(name = "credito", nullable = false)
-    @NotBlank(message = "El crédito del cliente no puede estar vacío")
-    @Positive(message = "El crédito del cliente debe ser un número positivo")
-    private Double credito;
+    @NotNull(message = "El crédito del cliente no puede estar vacío")
+    @Min(value = 0, message = "El crédito del cliente no puede ser menor a 0")
+    private double credito;
 
     @OneToOne
     @JoinColumn(name = "fkIdCuentaCliente", nullable = false, referencedColumnName = "idCuenta")

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -43,13 +44,13 @@ public class Producto {
     private String descripcionProducto;
 
     @Column(name = "existencias", nullable = false)
-    @NotBlank(message = "Las existencias del producto no pueden estar vacías")
+    @NotNull(message = "Las existencias del producto no pueden estar vacías")
     @Positive(message = "Las existencias del producto no pueden ser negativas")
     private Integer existencias;
 
     @Column(name = "garantia", nullable = false)
-    @NotBlank(message = "El campo de garantía no puede estar vacío")
-    private Boolean garantia;
+    @NotNull(message = "La garantía del producto no puede estar vacía")
+    private boolean garantia;
 
     @Column(name = "marca", length = 50)
     @Size(max = 50, message = "La marca del producto no puede tener más de 50 caracteres")
@@ -57,10 +58,10 @@ public class Producto {
     private String marca;
 
     @Column(name = "precioProducto", nullable = false)
-    @NotBlank(message = "El precio del producto no puede estar vacío")
+    @NotNull(message = "El precio del producto no puede estar vacío")
     @Digits(integer = 10, fraction = 2, message = "El precio del producto no puede tener más de 10 dígitos y 2 decimales")
     @Min(value = 0, message = "El precio del producto no puede ser negativo")
-    private Double precioProducto;
+    private double precioProducto;
 
     @Column(name = "tipoProducto", length = 15)
     @Size(max = 15, message = "El tipo de producto no puede tener más de 15 caracteres")

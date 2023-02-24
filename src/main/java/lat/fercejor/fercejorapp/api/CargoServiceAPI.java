@@ -12,5 +12,7 @@ public interface CargoServiceAPI {
     Cargo crearCargo(Cargo cargo);
     void eliminarCargo(Long id);
     Cargo actualizarCargo(Cargo cargo);
+
+    Optional<Cargo> obtenerCargoPorNombre(String nombreCargo);
     
 }

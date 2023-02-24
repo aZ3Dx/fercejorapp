@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -55,7 +56,7 @@ public class Empleado {
     private String correoEmpleado;
 
     @Column(name = "fechaNacimientoEmpleado", nullable = false)
-    @NotBlank(message = "La fecha de nacimiento del empleado no puede estar vacía")
+    @NotNull(message = "La fecha de nacimiento del empleado no puede estar vacía")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past(message = "La fecha de nacimiento del empleado no puede ser mayor a la fecha actual")
     private LocalDate fechaNacimientoEmpleado;

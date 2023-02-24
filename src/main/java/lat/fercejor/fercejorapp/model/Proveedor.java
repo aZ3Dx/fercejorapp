@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -61,7 +62,7 @@ public class Proveedor {
     private String direccionProveedor;
 
     @Column(name = "fechaNacimientoProveedor", nullable = false)
-    @NotBlank(message = "La fecha de nacimiento del proveedor no puede estar vacía")
+    @NotNull(message = "La fecha de nacimiento del proveedor no puede estar vacía")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past(message = "La fecha de nacimiento del proveedor no puede ser mayor a la fecha actual")
     private LocalDate fechaNacimientoProveedor;

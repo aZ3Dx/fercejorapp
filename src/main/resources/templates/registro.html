@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+
+<body>
+    <h1>Regístrate - Cliente</h1>
+    <form th:object="${cliente}" th:action="@{/registro}" method="post">
+        <input type="text" th:field="*{id}" placeholder="70008000">
+        <input type="text" th:field="*{nombreCliente}" placeholder="nombre">
+        <input type="text" th:field="*{apellidoPaternoCliente}" placeholder="apellidoPaterno">
+        <input type="text" th:field="*{apellidoMaternoCliente}" placeholder="apellidoMaterno">
+        <input type="text" th:field="*{direccionCliente}" placeholder="Av. A">
+        <input type="email" th:field="*{correoCliente}" placeholder="correo@mail.com">
+        <input type="text" th:field="*{celularCliente}" placeholder="987600000">
+        <input type="date" th:field="*{fechaNacimientoCliente}">
+        <input type="hidden" th:field="*{credito}">
+        <hr>
+        <div th:object="${cuenta}">
+            <input type="text" th:field="*{usuario}" placeholder="usuario">
+            <input type="password" th:field="*{clave}" placeholder="*****">
+            <input type="password" name="claveRepetida" placeholder="*****">
+            <input type="hidden" th:field="*{estadoCuenta}">
+            <input type="hidden" th:value="${idCargo}" name="idCargo">
+        </div>
+        <input type="submit" value="Registrar">
+        <div th:if="${errors}">
+            <ul>
+                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+            </ul>
+        </div>
+    </form>
+</body>
+
+</html>

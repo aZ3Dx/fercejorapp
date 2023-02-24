@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -54,13 +55,13 @@ public class ComprobantePago {
     private String nota;
 
     @Column(name = "fechaEmisionComprobantePago", nullable = false)
-    @NotBlank(message = "La fecha de emisión del comprobante de pago no puede estar vacía")
+    @NotNull(message = "La fecha de emisión del comprobante de pago no puede estar vacía")
     @FutureOrPresent(message = "La fecha de emisión del comprobante de pago no puede ser una fecha pasada")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaEmisionComprobantePago;
 
     @Column(name = "horaEmisionComprobantePago", nullable = false)
-    @NotBlank(message = "La hora de emisión del comprobante de pago no puede estar vacía")
+    @NotNull(message = "La hora de emisión del comprobante de pago no puede estar vacía")
     @FutureOrPresent(message = "La hora de emisión del comprobante de pago no puede ser una hora pasada")
     @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime horaEmisionComprobantePago;

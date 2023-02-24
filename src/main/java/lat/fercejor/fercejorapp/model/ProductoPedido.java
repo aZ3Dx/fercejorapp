@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 import lombok.Data;
@@ -32,19 +32,19 @@ public class ProductoPedido {
     private Pedido pedido;
 
     @Column(name = "precioProductoPedido", nullable = false)
-    @NotBlank(message = "El precio del producto no puede estar vacío")
+    @NotNull(message = "El precio del producto no puede estar vacío")
     @Digits(integer = 10, fraction = 2, message = "El precio del producto no puede tener más de 10 dígitos y 2 decimales")
     @Positive(message = "El precio del producto no puede ser negativo")
-    private Double precioProductoPedido;
+    private double precioProductoPedido;
 
     @Column(name = "peso", nullable = false)
-    @NotBlank(message = "El peso del producto no puede estar vacío")
+    @NotNull(message = "El peso del producto no puede estar vacío")
     @Digits(integer = 10, fraction = 2, message = "El peso del producto no puede tener más de 10 dígitos y 2 decimales")
     @Positive(message = "El peso del producto no puede ser negativo")
-    private Double peso;
+    private double peso;
 
     @Column(name = "cantidad", nullable = false)
-    @NotBlank(message = "La cantidad del producto no puede estar vacía")
+    @NotNull(message = "La cantidad del producto no puede estar vacía")
     @Min(value = 1, message = "La cantidad del producto no puede ser negativa")
     private Integer cantidad;
     

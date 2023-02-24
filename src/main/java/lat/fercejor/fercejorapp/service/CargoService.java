@@ -44,5 +44,11 @@ public class CargoService implements CargoServiceAPI {
         Cargo cargoActualizado = cargoRepository.save(cargo);
         return cargoActualizado;
     }
+
+    @Override
+    public Optional<Cargo> obtenerCargoPorNombre(String nombreCargo) {
+        Optional<Cargo> cargo = cargoRepository.findByNombreCargo(nombreCargo);
+        return cargo;
+    }
     
 }

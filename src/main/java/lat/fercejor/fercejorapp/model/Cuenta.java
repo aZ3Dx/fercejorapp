@@ -6,16 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -33,13 +37,15 @@ public class Cuenta {
     private String usuario;
 
     @Column(name = "clave", nullable = false, length = 60)
+    @Size(min = 8, message = "La clave debe tener al menos 8 caracteres")
+    @NotBlank(message = "La clave no puede estar vacía")
     private String clave;
 
     @Column(name = "estadoCuenta", nullable = false)
-    @NotBlank(message = "El estado de la cuenta no puede estar vacío")
-    private Boolean estadoCuenta;
+    @NotNull(message = "El estado de la cuenta no puede estar vacío")
+    private boolean estadoCuenta;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fkIdCargo", nullable = false, referencedColumnName = "idCargo")
     private Cargo cargo;
 
@@ -48,5 +54,31 @@ public class Cuenta {
 
     @OneToOne(mappedBy = "cuenta")
     private Empleado empleado;
-    
+
+    // To String
+    @Override
+    public String toString() {
+        if (this.cliente != null && this.cliente.getCuenta() != this) {
+            return "Cuenta{" +
+                    "id=" + id +
+                    ", usuario='" + usuario + '\'' +
+                    ", clave='" + clave + '\'' +
+                    ", estadoCuenta=" + estadoCuenta +
+                    ", cargo=" + cargo.getNombreCargo() +
+                    ", cliente=" + cliente +
+                    ", empleado=" + empleado +
+                    '}';
+        } else {
+            return "Cuenta{" +
+                    "id=" + id +
+                    ", usuario='" + usuario + '\'' +
+                    ", clave='" + clave + '\'' +
+                    ", estadoCuenta=" + estadoCuenta +
+                    ", cargo=" + cargo.getNombreCargo() +
+                    ", cliente=<circular reference>" +
+                    ", empleado=" + empleado +
+                    '}';
+        }
+    }
+
 }

@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -43,8 +44,8 @@ public class Transporte {
     private String serie;
     
     @Column(name = "estadoTransporte", nullable = false)
-    @NotBlank(message = "El estado del transporte no puede estar vacío")
-    private Boolean estadoTransporte;
+    @NotNull(message = "El estado del transporte no puede estar vacío")
+    private boolean estadoTransporte;
     
     @ManyToOne
     @JoinColumn(name = "fkIdEmpleadoConductor", referencedColumnName = "idEmpleado")
