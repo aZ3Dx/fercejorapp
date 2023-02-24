@@ -36,7 +36,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPedido")
-    private long id;
+    private Long id;
 
     @Column(name = "fechaPedido", nullable = false)
     @NotNull(message = "La fecha del pedido no puede estar vacía")

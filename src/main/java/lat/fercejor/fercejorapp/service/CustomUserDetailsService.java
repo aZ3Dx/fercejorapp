@@ -28,6 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         Cargo cargo = cuenta.getCargo();
         String nombreCargo = cargo.getNombreCargo();
+        System.out.println("Cargo: " + nombreCargo);
         GrantedAuthority authority = new SimpleGrantedAuthority(nombreCargo);
         List<GrantedAuthority> authorities = List.of(authority);
         return User.builder()

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Empleados</h1>
+    <a href="/dashboard/empleados/crear">Agregar Empleado</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido P.</th>
+                <th>Apellido M.</th>
+                <th>Correo</th>
+                <th>Fecha Nac.</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="empleado : ${empleados}">
+                <td th:text="${empleado.id}"></td>
+                <td th:text="${empleado.nombreEmpleado}"></td>
+                <td th:text="${empleado.apellidoPaternoEmpleado}"></td>
+                <td th:text="${empleado.apellidoMaternoEmpleado}"></td>
+                <td th:text="${empleado.correoEmpleado}"></td>
+                <td th:text="${empleado.fechaNacimientoEmpleado}"></td>
+                <td>
+                    <a th:href="@{/dashboard/empleados/editar/{id}(id=${empleado.id})}">Editar</a>
+                    <a th:href="@{/dashboard/empleados/eliminar/{id}(id=${empleado.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

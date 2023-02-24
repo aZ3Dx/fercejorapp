@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Categorias</h1>
+    <a href="/dashboard/categorias/crear">Crear nueva categoria</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="categoria : ${categorias}">
+                <td th:text="${categoria.id}"></td>
+                <td th:text="${categoria.nombreCategoria}"></td>
+                <td th:text="${categoria.descripcionCategoria}"></td>
+                <td th:text="${categoria.estadoCategoria}"></td>
+                <td>
+                    <a th:href="@{/dashboard/categorias/editar/{id}(id=${categoria.id})}">Editar</a>
+                    <a th:href="@{/dashboard/categorias/eliminar/{id}(id=${categoria.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

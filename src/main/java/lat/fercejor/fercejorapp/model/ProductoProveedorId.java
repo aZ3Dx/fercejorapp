@@ -12,9 +12,9 @@ import lombok.Data;
 public class ProductoProveedorId implements Serializable {
 
     @Column(name = "fkIdProductoSuministro")
-    private long producto;
+    private Long producto;
 
     @Column(name = "fkIdProveedor")
-    private long proveedor;
+    private Long proveedor;
     
 }

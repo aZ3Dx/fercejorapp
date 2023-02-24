@@ -29,16 +29,20 @@ import lat.fercejor.fercejorapp.service.CuentaService;
 
 @Controller
 public class HomeController {
-
-    @Autowired
-    private CuentaService cuentaService;
-    @Autowired
+ 
+    private CuentaService cuentaService; 
     private CargoService cargoService;
-    @Autowired
     private ClienteService clienteService;
+    
+    private SecurityBeans securityBeans;
 
     @Autowired
-    private SecurityBeans securityBeans;
+    public HomeController(CuentaService cuentaService, CargoService cargoService, ClienteService clienteService, SecurityBeans securityBeans) {
+        this.cuentaService = cuentaService;
+        this.cargoService = cargoService;
+        this.clienteService = clienteService;
+        this.securityBeans = securityBeans;
+    }
 
     @GetMapping("/")
     public String inicio() {
@@ -81,7 +85,7 @@ public class HomeController {
             @Valid Cuenta cuenta, BindingResult resultCuenta,
             @Valid Cliente cliente, BindingResult resultCliente,
             @RequestParam("claveRepetida") @NotEmpty @Size(min = 8, max = 15) String claveRepetida,
-            @RequestParam("idCargo") long idCargo,
+            @RequestParam("idCargo") Long idCargo,
             Model model) {
         if (resultCuenta.hasErrors() || resultCliente.hasErrors() || !cuenta.getClave().equals(claveRepetida)) {
             System.out.println("Error en el formulario");

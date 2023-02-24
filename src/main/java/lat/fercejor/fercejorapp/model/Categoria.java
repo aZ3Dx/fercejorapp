@@ -25,7 +25,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCategoria")
-    private Long idCategoria;
+    private Long id;
 
     @Column(name = "nombreCategoria", nullable = false, unique = true, length = 15)
     @Size(max = 15, message = "El nombre de la categoría no puede tener más de 15 caracteres")

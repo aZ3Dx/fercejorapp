@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +8,14 @@
 </head>
 <body>
     <h1>Estás en el Dashboard - <span th:text="${user}"></span></h1>
+    <h2>Rol <span th:text="${roles}"></span></h2>
+    <h2>Opciones:</h2>
+    <ul>
+        <li><a href="/dashboard/clientes">Clientes</a></li>
+        <li><a href="/dashboard/empleados">Empleados</a></li>
+        <li><a href="/dashboard/productos">Productos</a></li>
+        <li><a href="/dashboard/categorias">Categorias</a></li>
+    </ul>
     <a href="/logout">Cerrar sesión</a>
 </body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido P.</th>
+                <th>Apellido M.</th>
+                <th>Correo</th>
+                <th>Celular</th>
+                <th>Dirección</th>
+                <th>Fecha Nac.</th>
+                <th>Crédito</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nombreCliente}"></td>
+                <td th:text="${cliente.apellidoPaternoCliente}"></td>
+                <td th:text="${cliente.apellidoMaternoCliente}"></td>
+                <td th:text="${cliente.correoCliente}"></td>
+                <td th:text="${cliente.celularCliente}"></td>
+                <td th:text="${cliente.direccionCliente}"></td>
+                <td th:text="${cliente.fechaNacimientoCliente}"></td>
+                <td th:text="${cliente.credito}"></td>
+                <td>
+                    <a th:href="@{/dashboard/clientes/agregar-credito/{id}(id=${cliente.id})}">Agregar Crédito</a>
+                    <!-- <a th:href="@{/dashboard/clientes/editar/{id}(id=${cliente.id})}">Editar</a>
+                    <a th:href="@{/dashboard/clientes/eliminar/{id}(id=${cliente.id})}">Eliminar</a> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

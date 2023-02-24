@@ -28,7 +28,7 @@ public class Cargo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCargo")
-    private long id;
+    private Long id;
 
     @Column(name = "nombreCargo", nullable = false, unique = true, length = 15)
     @Size(max = 15, message = "El nombre del cargo no puede tener más de 15 caracteres")

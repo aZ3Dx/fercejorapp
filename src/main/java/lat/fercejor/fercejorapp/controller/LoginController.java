@@ -43,6 +43,7 @@ public class LoginController {
                 Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
+
                 if (userDetails.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("Cliente"))) {
                     return "redirect:/";
                 }

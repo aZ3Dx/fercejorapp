@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Crear Empleado</h1>
+    <form th:action="@{/dashboard/empleados/crear}" method="post">
+        <th:block th:object="${empleado}">
+            <label for="nombreEmpleado">Nombre</label>
+            <input type="text" name="nombreEmpleado" th:field="*{nombreEmpleado}">
+            <label for="apellidoPaternoEmpleado">Apellido Paterno</label>
+            <input type="text" name="apellidoPaternoEmpleado" th:field="*{apellidoPaternoEmpleado}">
+            <label for="apellidoMaternoEmpleado">Apellido Materno</label>
+            <input type="text" name="apellidoMaternoEmpleado" th:field="*{apellidoMaternoEmpleado}">
+            <label for="correoEmpleado">Correo</label>
+            <input type="text" name="correoEmpleado" th:field="*{correoEmpleado}">
+            <label for="fechaNacimientoEmpleado">Fecha de Nacimiento</label>
+            <input type="date" name="fechaNacimientoEmpleado" th:field="*{fechaNacimientoEmpleado}">
+        </th:block>
+        <th:block th:object="${cuenta}">
+            <label for="usuario">Usuario</label>
+            <input type="text" name="usuario" th:field="*{usuario}">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" name="clave" th:field="*{clave}">
+            <input type="hidden" th:field="*{estadoCuenta}">
+        </th:block>
+        <select name="idCargo">
+            <option value="">--Seleccione un cargo--</option>
+            <option th:each="cargo : ${cargos}" th:value="${cargo.id}" th:text="${cargo.nombreCargo}"></option>
+        </select>
+        <input type="submit" value="Crear">
+        <div th:if="${errors}">
+            <ul>
+                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+            </ul>
+        </div>
+    </form>
+</body>
+</html>
