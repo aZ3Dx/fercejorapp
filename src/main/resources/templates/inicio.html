@@ -5,10 +5,273 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fercejor</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+body{
+display:flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+background-color: #d1f66d;
+
+
+
+}
+.card{
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 20px;
+}
+ .card .face{
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     backface-visibility: hidden;
+     border-radius: 10px;
+     overflow: hidden;
+     transition: .8s;
+ }
+ .card .front{
+     transform: perspective(600px)rotateY(0deg);
+     box-shadow:  0 5px 10px #000;
+     
+ }
+ .card .front img{
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+ .card .front h3{
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     height: 45px;
+     line-height: 45px;
+     color:#fff;
+     background: rgba(0,0,0,.4);
+     text-align: center;
+ }
+ .card .back{
+     transform: perspective(600px)rotateY(180deg);
+     background: rgb(3,35,54);
+     padding: 15px;
+     color:#f3f3f3;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     text-align: center;
+     box-shadow: 0 5px 10PX #000;
+ }
+ .card .back .link{
+     border-top: solid 1px #f3f3f3;
+     height: 50px;
+     line-height: 50px;
+ }
+ .card .back .link a{
+
+    color:#f3f3f3;
+
+ }
+ .card .back h3{
+     font-size: 30px;
+     margin-top: 20px;
+     letter-spacing: 2px;
+ }
+ .card .back p{
+     letter-spacing: 1px;
+ }
+ .card:hover .front{
+     transform: perspective(600px) rotateY(180deg);
+ }
+ .card:hover .back{
+    transform: perspective(600px) rotateY(360deg);
+}
+#cerrar{
+    text-decoration: none;
+color:red;
+}
+#cerrar:hover{
+    color:#fff;
+}
+</style>
 </head>
 <body>
-    <h1>Página Principal</h1>
-    <a href="/login">Inicia sesión</a>
-    <a href="/registro">Registrate</a>
+    
+    
+    <h1 class="alert alert-primary" style="background-color: #faf9f5;border: 4px black solid;" >  <center><b  style="font-size: 60px;  color:black;font-family: 'Indie Flower', cursive;">FERCEJOR SAC</b><img src="almacenamiento.png" alt=""></center></h1>
+  <!-- NAVBAR--><div class="container-fluid"  >
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+               <!--<p> Bienvenido <span sec:authentication=" principal.username "> </span></p>-->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Contenido
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" th:href="@{/lista_libros}">Productos</a></li>
+                                <li><a class="dropdown-item" th:href="@{/lista_autores}">Consulta tu tarifa</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Reportes
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" th:href="@{/listado}">Búsqueda</a></li>
+                                <li><a class="dropdown-item" th:href="@{/reportes}">Gráficos</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                     
+                    
+                        <button class="btn btn-outline-success" type="submit"><a href="/login">Inicia sesión</a></button>
+                    
+                    
+				<ul class="nav navbar-nav">
+                                    <button  class="btn btn-outline-danger" sec:authorize="isAuthenticated()"><a href="/registro">Registrate</a></button>
+				</ul>
+			
+                </div>
+            
+        </nav>
+</div>
+<!--  NAVBAR--------------------------------------------------------------   -->
+        
+<center>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div><br>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/inge.jpg" height="500px " class="d-block " alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/men.jpg" height="500px " class="d-block " alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/alma.jpg" height="500px " class="d-block " alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</center>
+ 
+
+<div class="container"> <center><h2 style="  font-size: 60px;color:black;font-family: 'Indie Flower', cursive;"><br>NOSOTROS </h2></center>
+     <p style="text-align:justify;">
+   En el año 1980 los hermanos Juan y José Fercejor constituyen una pequeña sociedad familiar, en
+la ciudad de Córdoba para dedicarse a la venta de repuestos para autos con el propósito de cubrir
+el territorio de la provincia de Córdoba. Un par de años después se trasladaron a un predio en la Avenida Circunvalación de la Ciudad de
+Córdoba y allí construyeron un importante depósito, en el cual podían dejar de manera transitoria
+los productos que los clientes compraban y que por razones de espacio preferían dejar en
+FERCEJOR, alquilando parte del depósito para disponer de esa mercadería cuando realmente la
+necesitaran.
+  </p><center>
+      <img src="/images/equipo.png" alt=""></center><br>
+ <center><h2 style=" font-size: 60px; color:black;font-family: 'Indie Flower', cursive;">MISIÓN</h2></center>
+   <p  style="text-align:justify;">“Proveer todo tipo de repuestos para autos al comercio minorista en el momento justo, en el lugar
+indicado y al mejor precio”. Para cumplir con esa misión, FERCEJOR, brinda el servicio de
+logística y distribución a sus Clientes.
+   </p> 
+ 
+  <center>
+      <img src="/images/motivacion.png" alt="">
+ <center><br><h2 style=" font-size: 60px; color:black;font-family: 'Indie Flower', cursive;">VISIÓN</h2></center>
+    <p  style="text-align:justify;">“Ser reconocida como una empresa de excelencia, altamente eficiente, humana y socialmente
+responsable; referente del mercado del Repuesto en el Mercosur. Ofreciendo un espacio moderno, agradable y accesibl y orientada al usuario".
+    </p> 
+    <img src="/images/visionario.png" alt="">
+
+  <h3 style="  font-size: 60px;color:black;font-family: 'Indie Flower', cursive;"> <br>SERVICIOS DESTACADOS<h3>
+     </center></div>
+   
+
+
+
+
+
+
+     <br>   <div style="background-color: #d1f66d;" class="card">
+          <div class="face front">
+              <img src="/images/repuestos.jpg" alt="">
+               <h3>VENTA DE REPUESTOS</h3>
+          </div>
+          <div class="face back">
+            <h3>El Pequeño Vampiro</h3>
+            <p style="text-align:justify;">Algo maravilloso le ocurrió a Anton, algo que hasta ese momento sólo sucedía en las novelas de terror o de misterio que tanto le gusta leer: conoció a Rüdiger, un niño vampiro. Los chicos se hacen grandes amigos  Desde ese momento, vivirán las más intrépidas y divertidas aventuras.</p>
+            <div class="link">
+          <a href="https://www.loqueleo.com/mx/libro/el-pequeno-vampiro">Más info</a>
+            </div> 
+          </div>
+      </div>
+         <div  style="background-color: #d1f66d;;" class="card">
+      <div class="face front">
+          <img src="/images/rastrea.png" alt="">
+           <h3>LOCALIZA TU PEDIDO</h3>
+      </div>
+      <div class="face back">
+        <h3>El Gato Negro</h3>
+        <p style="text-align:justify;">El gato negro es un cuento de horror del escritor estadounidense Edgar Allan Poe, publicado en el periódico Saturday Evening Post de Filadelfia en su número del 19 de agosto de 1843. La crítica lo considera uno de los más espeluznantes de la historia de la literatura.</p>
+        <div class="link">
+      <a href="https://books.google.com.pe/books/about/El_Gato_Negro.html?id=Ufz8CwAAQBAJ&printsec=frontcover&source=kp_read_button&hl=es-419&redir_esc=y#v=onepage&q&f=false">Más info</a>
+        </div> 
+      </div>
+     </div>
+     <div  style="background-color: #d1f66d;"  class="card">
+    <div class="face front">
+        <img src="/images/des.jpg" alt="">
+         <h3>DESCUENTOS</h3>
+    </div>
+    <div class="face back">
+      <h3>DESCUENTOS POR MEMBRESIA </h3>
+      <p style="text-align:justify;">Es, quizás, el poema más conocido de Cesar Vallejo, y también el más querido. El poema trata de la condición humana: el ser humano en tanto que da cuenta de su dolor. Especialmente, el dolor que es difícil definir, decir o comprender.</p>
+      <div class="link">
+    <a href="#">Más info</a>
+      </div> 
+    </div>
+    </div>
+
+
+    
+
+
+
+        <footer class="p-5 text-dark text-center position-relative">
+            <div class="container">
+                <p class="lead">Copyright &copy; 2023 FERCEJOR</p>
+                <a href="" class="position-absolute bottom-0 end-0 p-5">
+                   
+                </a>
+            </div>
+    
+    
+    
+   
 </body>
 </html>
