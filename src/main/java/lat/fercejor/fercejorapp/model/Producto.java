@@ -16,7 +16,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import lombok.Data;
@@ -45,7 +44,7 @@ public class Producto {
 
     @Column(name = "existencias", nullable = false)
     @NotNull(message = "Las existencias del producto no pueden estar vacías")
-    @Positive(message = "Las existencias del producto no pueden ser negativas")
+    @Min(value = 0, message = "Las existencias del producto no pueden ser negativas")
     private Integer existencias;
 
     @Column(name = "garantia", nullable = false)

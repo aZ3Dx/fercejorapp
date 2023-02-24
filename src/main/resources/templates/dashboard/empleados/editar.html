@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Crear Empleado</h1>
-    <form th:action="@{/dashboard/empleados/crear}" method="post">
+    <h1>Editar Empleado</h1>
+    <form th:action="@{/dashboard/empleados/editar/{id}(id=${empleado.id})}" method="post">
         <th:block th:object="${empleado}">
+            <input type="hidden" th:field="*{id}">
             <label for="nombreEmpleado">Nombre</label>
             <input type="text" name="nombreEmpleado" th:field="*{nombreEmpleado}">
             <label for="apellidoPaternoEmpleado">Apellido Paterno</label>
@@ -22,19 +25,25 @@
             <input type="date" name="fechaNacimientoEmpleado" th:field="*{fechaNacimientoEmpleado}">
         </th:block>
         <th:block th:object="${cuenta}">
-            <label for="usuario">Usuario</label>
+            <input type="text" th:field="*{id}">
+            <label for="estadoCuenta">Estado</label>
+            <select name="estadoCuenta" th:field="*{estadoCuenta}">
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+            <!-- <label for="usuario">Usuario</label>
             <input type="text" name="usuario" th:field="*{usuario}">
             <label for="contrasena">Contraseña</label>
             <input type="password" name="clave" th:field="*{clave}">
             <label for="contrasenaRepetida">Repetir Contraseña</label>
             <input type="password" name="claveRepetida">
-            <input type="hidden" th:field="*{estadoCuenta}">
+            <input type="hidden" th:field="*{estadoCuenta}"> -->
         </th:block>
         <select name="idCargo">
             <option value="0">--Seleccione un cargo--</option>
-            <option th:each="cargo : ${cargos}" th:value="${cargo.id}" th:text="${cargo.nombreCargo}"></option>
+            <option th:each="cargo : ${cargos}" th:selected="${cuenta.cargo.id == cargo.id}" th:value="${cargo.id}" th:text="${cargo.nombreCargo}"></option>
         </select>
-        <input type="submit" value="Crear">
+        <input type="submit" value="Editar">
         <div th:if="${errors}">
             <ul>
                 <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
@@ -42,4 +51,5 @@
         </div>
     </form>
 </body>
+
 </html>

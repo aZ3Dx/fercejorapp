@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Crear Producto</h1>
+    <form th:action="@{/dashboard/productos/crear}" method="post">
+        <th:block th:object="${producto}">
+            <label for="nombreProducto">Nombre del producto</label>
+            <input type="text" th:field="*{nombreProducto}" id="nombreProducto" name="nombreProducto">
+            <label for="descripcionProducto">Descripción del producto</label>
+            <input type="text" th:field="*{descripcionProducto}" id="descripcionProducto" name="descripcionProducto">
+            <label for="existencias">Existencias</label>
+            <input type="number" th:field="*{existencias}" id="existencias" name="existencias">
+            <label for="garantia">Garantía</label>
+            <select th:field="*{garantia}" name="garantia">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+            </select>
+            <label for="marca">Marca</label>
+            <input type="text" th:field="*{marca}" id="marca" name="marca">
+            <label for="precioProducto">Precio del producto</label>
+            <input type="number" th:field="*{precioProducto}" id="precioProducto" name="precioProducto">
+            <label for="tipoProducto">Tipo de producto</label>
+            <input type="text" th:field="*{tipoProducto}" id="tipoProducto" name="tipoProducto">
+        </th:block>
+        <select name="idCategoria">
+            <option value="0">--Seleccione una categoría--</option>
+            <option th:each="categoria : ${categorias}" th:value="${categoria.id}"
+                th:text="${categoria.nombreCategoria}"></option>
+        </select>
+        <button type="submit">Crear</button>
+        <div th:if="${errors}">
+            <ul>
+                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+            </ul>
+        </div>
+    </form>
+</body>
+
+</html>

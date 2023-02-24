@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Editar Producto</h1>
+    <form th:action="@{/dashboard/productos/editar/{id}(id=${producto.id})}" method="post">
+        <th:block th:object="${producto}">
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{marca}">
+            <input type="hidden" th:field="*{tipoProducto}">
+            <input type="hidden" th:field="*{precioProducto}">
+            <input type="hidden" th:field="*{existencias}">
+
+            <label for="nombreProducto">Nombre</label>
+            <input type="text" name="nombreProducto" th:field="*{nombreProducto}">
+            <label for="descripcionProducto">Descripción</label>
+            <input type="text" name="descripcionProducto" th:field="*{descripcionProducto}">
+            <label for="garantia">Garantia</label>
+            <select name="garantia" th:field="*{garantia}">
+                <option th:selected="${producto.garantia == 1}" value="1">Si</option>
+                <option th:selected="${producto.garantia == 0}" value="0">No</option>
+            </select>
+        </th:block>
+        <th:block th:object="${categoriaDelProducto}">
+            <label for="categoriaProducto">Categoria</label>
+            <input type="hidden" th:field="*{id}">
+            <select th:field="${categoriaDelProducto.id}">
+                <option value="0" disabled>--Seleccione una categoria--</option>
+                <option th:each="categoria : ${categorias}" th:value="${categoria.id}"
+                    th:text="${categoria.nombreCategoria}"></option>
+            </select>
+        </th:block>
+        <input type="submit" value="Editar">
+        <div th:if="${errors}">
+            <ul>
+                <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+            </ul>
+        </div>
+    </form>
+</body>
+
+</html>

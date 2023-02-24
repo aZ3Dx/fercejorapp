@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <a href="/dashboard/productos/crear">Crear producto</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Existencias</th>
+                <th>Garantía</th>
+                <th>Marca</th>
+                <th>Precio</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.id}"></td>
+                <td th:text="${producto.nombreProducto}"></td>
+                <td th:text="${producto.descripcionProducto}"></td>
+                <td th:text="${producto.existencias}"></td>
+                <td th:text="${producto.garantia}"></td>
+                <td th:text="${producto.marca}"></td>
+                <td th:text="${producto.precioProducto}"></td>
+                <td th:text="${producto.tipoProducto}"></td>
+                <td>
+                    <a th:href="@{/dashboard/productos/editar/{id}(id=${producto.id})}">Editar</a>
+                    <a th:href="@{/dashboard/productos/eliminar/{id}(id=${producto.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
